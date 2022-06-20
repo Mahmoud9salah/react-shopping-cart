@@ -1,6 +1,9 @@
 import React from 'react';
+import '../../css/Products/Products.css'
  
 function Products (props) {
+    console.log(props.products)
+    console.log("this is the props")
     return(
         
         <div className="products-wrapper">
