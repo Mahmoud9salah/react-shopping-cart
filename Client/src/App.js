@@ -8,7 +8,9 @@ import { words } from './words'
 
 function App() {
 
-  const [products, setProducts] = useState([data])
+  const [products, setProducts] = useState(data)
+  // console.log("this is the products")
+  // console.log(products[0])
 
   return (
     <div className="layout">
