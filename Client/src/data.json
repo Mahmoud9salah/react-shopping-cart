@@ -5,7 +5,7 @@
         "imageUrl": "/product1.jpg",
         "desc": "This is product 1",
         "price": 50,
-        "sizes": ["S", "M"]
+        "sizes": ["M", "M"]
     },
     {
         "id": "id2",
@@ -29,6 +29,6 @@
         "imageUrl": "/product1.jpg",
         "desc": "This is product 4",
         "price": 20,
-        "sizes": ["S", "M"]
+        "sizes": ["X", "Xl"]
     }
 ]
