@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState , useEffect } from 'react';
 import Cart from './components/Cart/Cart';
 import Filter from './components/Filter/Filter';
 import Footer from "./components/Footer/Footer";
@@ -13,7 +13,7 @@ function App() {
   const [products, setProducts] = useState(data)
   const [sort, setSort] = useState("")
   const [size, setSize] = useState("")
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
 
   const handleFilterBySize = (e) => {
     setSize(e.target.value);
@@ -33,9 +33,9 @@ function App() {
     setSort(order);
     let productsClone = [...products];
     let newProducts = productsClone.sort( function(a,b) {
-      if (order == "lowest") {
+      if (order === "lowest") {
         return a.price - b.price
-      } else if (order == "highest") {
+      } else if (order === "highest") {
         return b.price - a.price
       } else {
         return a.id < b.id ? 1 : -1
@@ -63,6 +63,10 @@ function App() {
     const cartItemsClone = [...cartItems];
     setCartItems(cartItemsClone.filter(p => p.id !== product.id))
   }
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+  }, [cartItems])
 
   return (
     <div className="layout">
