@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../../css/Cart/Cart.css';
 import Checkout from '../CheckoutFrom/CheckoutFrom';
+import Bounce from 'react-reveal/Bounce'
 
 function Cart(props) {
 
@@ -27,24 +28,27 @@ function Cart(props) {
             <div className='cart-title'>{props.cartItems.length === 0 ? 'Cart Empty' : <p>
                 There is {props.cartItems.length} product in cart
                 </p>}</div>
-            <div className='cart-items'>
-                {props.cartItems.map(item => (
-                        <div className='cart-item' key={item.id}>
-                            <img src={item.imageUrl} alt='' />
-                            <div className='cart-info'>
-                                <div>
-                                    <p>title: {item.title}</p>
-                                    <p>qty: {item.qty} </p>
-                                    <p>price: ${item.price}</p>
+            <Bounce bottom cascade>
+                
+                <div className='cart-items'>
+                    {props.cartItems.map(item => (
+                            <div className='cart-item' key={item.id}>
+                                <img src={item.imageUrl} alt='' />
+                                <div className='cart-info'>
+                                    <div>
+                                        <p>title: {item.title}</p>
+                                        <p>qty: {item.qty} </p>
+                                        <p>price: ${item.price}</p>
+                                    </div>
+                                    <button onClick={() => props.removeFromCart(item)}>
+                                        Remove
+                                    </button>
                                 </div>
-                                <button onClick={() => props.removeFromCart(item)}>
-                                    Remove
-                                </button>
                             </div>
-                        </div>
-                ))
-                }
-            </div>
+                    ))
+                    }
+                </div>
+            </Bounce>
 
                 {/* The Sub Total  */}
             {
@@ -70,6 +74,8 @@ function Cart(props) {
             handleChange={handleChange}
             submitOrder={submitOrder}
             />
+                
+            
         </div>
     )
 }
